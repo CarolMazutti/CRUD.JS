@@ -17,13 +17,13 @@ const database = new DatabaseMemory()
 
 
 server.post('/videos', (request, reply) => {
-    const body= request.body
+    const { title, description, duration }= request.body
 
-    console.log(body)
+
     database.create({
-        title: 'Vídeo 01',
-        description: 'Esse é o vídeo 01',
-        duration: 180
+        title,
+        description,
+        duration,
     })
 
     console.log(database,list())
@@ -32,14 +32,29 @@ server.post('/videos', (request, reply) => {
 })
 
 server.get('/videos', () => {
-    return 'Hello World'
+    const videos = database.list()
+
+    return videos
 })
 
-server.put('/videos/:id', () => {
-    return 'Hello World'
+server.put('/videos/:id', (request, reply) => {
+    const videoId = request.params.id
+    const { title, description, duration }= request.body
+
+    database.update(videoId, {
+        title,
+        description,
+        duration,
+    })
+
+    return reply.status(204).send()
 })
-server.delete('/videos/:id', () => {
-    return 'Hello World'
+server.delete('/videos/:id', (request, reply) => {
+    const videoId = request.params.id
+
+    database.delete(videoId)
+
+    return reply.status(204).send()
 })
 
 server.listen({

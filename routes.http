@@ -2,5 +2,28 @@ POST http: //localhost:3333/videos
 Content-Type: application/json
 
 {
-    "title": "Video 01"
+    "title": "Vídeo 01",
+    "description": "Esse é o primeiro vídeo",
+    "duration": 180
 }
+
+###
+
+GET http: //localhost:3333/videos
+
+###
+
+PUT http: //localhost:3333/videos/
+# Após o último / colocar o Id do vídeo
+Content-Type: application/json
+
+{
+    "title": "Vídeo 01",
+    "description": "Esse é o primeiro vídeo",
+    "duration": 180
+}
+
+###
+
+DELETE  http: //localhost:3333/videos/
+# Após o último / colocar o Id do vídeo
